@@ -34,7 +34,7 @@ body { padding: 3em 0;}
     color: #FFFFFF;
 }
 
-#cart-button {
+.cart-button {
     background-color: #2f4e17;
     color: #FFFFFF;
     float: right;
@@ -115,8 +115,7 @@ body { padding: 3em 0;}
 }
 
 .x:hover {
-    color:red
-    ;
+    color:red;
 }
 
 .list {
@@ -134,11 +133,6 @@ body { padding: 3em 0;}
     margin-top: 0.5em;
 }
 
-.highlighted {
-
-    background-color: rgba(0,0,0,1);
-}
-
 .remove-button {
     margin-bottom: 1em;
     margin-right: 4em;
@@ -146,4 +140,8 @@ body { padding: 3em 0;}
 
 .warning {
    margin-bottom: 1em;
+}
+
+.item-box:hover {
+    background-color: rgba(0,0,0,0.1);
 }

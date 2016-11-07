@@ -14,38 +14,35 @@ $(document).ready( function () {
 
     $('.add-to-cart').on('click', updateCart);
     
-    $('#cart-button').on('click', function () {
+    $('.cart-button').on('click', function () {
         cartList();
     });
 
     $('#remove').on('click', remove);
     
-    $('.item-box').hover( function () {
-        $(this).toggleClass('highlighted');        
-    });
+  
 });
 
-var $itemArray = [];
-var $cart = [];
-var $price = null;
-var $countAllItems = null;
-var $result = [];
+var itemArray = [];
+var cart = [];
+var price = null;
+var countAllItems = null;
 
 function getItemList () {
     var preke = null;
-    for ( i=1; i<5; i++) {
+    for ( i=1; i<9; i++) {
         preke = "Item"+i;
         var item = JSON.parse(localStorage.getItem(preke));
-        $itemArray.push(item);
+        itemArray.push(item);
     }
-    return $itemArray;
+    return itemArray;
 }
 
 function printItemList () {
     
     var itemsList = $('#items-box');
     
-    $.each($itemArray, function (index, val) {
+    $.each(itemArray, function (index, val) {
         $(itemsList).append('<div>');
         
         var itemBox = $(itemsList).find('div:last');
@@ -63,22 +60,22 @@ function printItemList () {
 function updateCart () {
     
     var $item = $(this).attr('rel');
-    var $price = 0;
+    var price = 0;
     
     
-    $.each( $itemArray, function (index, val) {
+    $.each( itemArray, function (index, val) {
         if (this.preke === $item) {
-            $cart.push(this);
+            cart.push(this);
         } 
     })
     
-    $.each($cart, function (index, val) {
-        $price += Number($cart[index].kaina);
+    $.each(cart, function (index, val) {
+        price += Number(cart[index].kaina);
     });
        
-    $countAllItems = $cart.length;
+    countAllItems = cart.length;
         
-    $('#total-price').html('<p>Gėlių krepšelyje: ' + $countAllItems + ' Iš viso: ' + $price.toFixed(2) + ' Eu</p>' );  
+    $('#total-price').html('<p class="basket">Gėlių krepšelyje: ' + countAllItems + ' Iš viso: ' + price.toFixed(2) + ' Eu</p>' );  
 }
 
 function cartList () {
@@ -86,31 +83,30 @@ function cartList () {
     var $modalBody = $('.modal-content');
         
     $modalBody.text('');
-
     
-    $.each( $itemArray, function (index, val) {
+    $.each( itemArray, function (index, val) {
             
-        var $itemInArray = $itemArray[index].preke;
-        var $itemPrice = $itemArray[index].kaina;
-        var $itemData = $itemArray[index].aprasymas;
-        var $count = 0;
+        var itemInArray = itemArray[index].preke;
+        var itemPrice = itemArray[index].kaina;
+        var itemData = itemArray[index].aprasymas;
+        var count = 0;
         
-        $.each( $cart, function (index, val) {
-            if ( $cart[index].preke === $itemInArray) {
-                $count += 1;
+        $.each( cart, function (index, val) {
+            if ( cart[index].preke === itemInArray) {
+                count += 1;
             } 
         });
         
        
-        if ( $count > 0 ) {
+        if ( count > 0 ) {
             $modalBody.append( "<div class='container'>"
-                            + "<h4>Prekė " + $itemInArray + '. Krepšelyje: ' + $count + "</h4>" 
-                            + "<p> Vieneto kaina: " + $itemPrice + ". Prekės aprašymas: " + $itemData + "</p>" 
-                            + "<p><span rel='" + $itemInArray + "' class='x'>Pašalinti iš krepšelio</span></p></div>"); 
+                            + "<h4>Prekė " + itemInArray + '. Krepšelyje: ' + '<span class="count">' + count + '</span>' + "</h4>" 
+                            + "<p> Vieneto kaina: " + itemPrice + ". Prekės aprašymas: " + itemData + "</p>" 
+                            + "<p><span rel='" + itemInArray + "' class='x'>Pašalinti iš krepšelio</span></p></div>"); 
         }
     });
     
-    $('.x').on('click', deleItemFromCart);
+    $('.x').on('click', deleteItemFromCart);
 }
 
 function remove () {
@@ -122,22 +118,37 @@ function remove () {
                               + "<button type='button' class='btn btn-danger remove-button'>Pašalinti</button>"
                               + "<button type='button' class='btn btn-warning warning'>Atšaukti</button></div>"); 
         
-        $('.remove-button').on('click', deleItemFromCart);
+        $('.remove-button').on('click', deleteItemFromCart);
         $('.warning').on('click', function(){
             $('#modal').modal('hide');
         });
 }
 
-function deleItemFromCart () {
+function deleteItemFromCart () {
     
     var value = $(this).attr('rel')
+
+    $.each( itemArray, function (index, val) { 
        
-    $cart = $.grep( $cart, function (obj, index) {        
-        return obj.preke != value;
-    });
+       $('.count').each(function (index, value) {
+          
+            if ( true ) {
+                 
+                $(document).ready(function() {
+                console.log( $('.count span').text()); });
+            }
+        
+            else {
+
+                cart = $.grep( cart, function (obj, index) {        
+                return obj.preke != value;
+                });
+            };
+
+        });
     
+     });
+
     updateCart();
     cartList();
-    updateCart();
 }
-
