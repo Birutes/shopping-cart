@@ -1,6 +1,6 @@
 $(document).ready( function () {
     
-    getItemList();     
+    getItems.getItemList();     
     printItemList();  
     cartList();
     
@@ -28,15 +28,16 @@ var cart = [];
 var price = null;
 var countAllItems = null;
 
-function getItemList () {
+var getItems = { 
+    getItemList: function () {
     var preke = null;
-    for ( i=1; i<9; i++) {
+    for ( i=1; i<items.length + 1; i++) {
         preke = "Item"+i;
         var item = JSON.parse(localStorage.getItem(preke));
         itemArray.push(item);
     }
     return itemArray;
-}
+} };
 
 function printItemList () {
     
@@ -128,14 +129,13 @@ function deleteItemFromCart () {
     
     var value = $(this).attr('rel')
 
-    $.each( itemArray, function (index, val) { 
        
-       $('.count').each(function (index, value) {
+       $('span.count').each(function () {
           
-            if ( true ) {
+            if ( ($('span.count').text()) > 1 ) {
                  
                 $(document).ready(function() {
-                console.log( $('.count span').text()); });
+                console.log( $('span.count').text()); });
             }
         
             else {
@@ -147,7 +147,6 @@ function deleteItemFromCart () {
 
         });
     
-     });
 
     updateCart();
     cartList();
