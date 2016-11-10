@@ -49,10 +49,12 @@ var items = [   {'Item1' :
                 aprasymas: 'Lauko gėlės – tai žvalumo, gyvybingumo simbolis. ',
                 kaina: '24.62',
                 foto: 'img/ramune.jpg'}}
-            ]
+            ];
 
-/* items.push({'Item6' :
+/* var newItem = {'Item6' :
     { preke: 'Ramunių puokštė',
     aprasymas: 'Lauko gėlės – tai žvalumo, gyvybingumo simbolis. ',
     kaina: '24.62',
-    foto: 'img/ramune.jpg'}}); */
+    foto: 'img/ramune.jpg'}}
+
+ items.push(newItem); */ 

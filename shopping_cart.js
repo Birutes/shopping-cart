@@ -129,23 +129,41 @@ function deleteItemFromCart () {
     
     var value = $(this).attr('rel')
 
-       
-       $('span.count').each(function () {
-          
-            if ( ($('span.count').text()) > 1 ) {
+       $('span.count').each(function (index, value) {
+            switch (index) {
+                case 0:
+                    itemCount = $('span.count').text().charAt(0);
+                case 1:
+                    Itemcount = $('span.count').text().charAt(1);
+                    break;
+                case 2:
+                    Itemcount = $('span.count').text().charAt(2);
+                    break;
+                case 3:
+                    Itemcount = $('span.count').text().charAt(3);
+                    break;
+                case 4:
+                    Itemcount = $('span.count').text().charAt(4);
+                    break;
+            }
+             });
+            if ( itemCount > 1 ) {
                  
                 $(document).ready(function() {
-                console.log( $('span.count').text()); });
+                console.log( itemCount); });
             }
         
             else {
+       
 
                 cart = $.grep( cart, function (obj, index) {        
                 return obj.preke != value;
                 });
-            };
+         };
+        
 
-        });
+
+    
     
 
     updateCart();
