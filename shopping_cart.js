@@ -30,10 +30,10 @@ var countAllItems = null;
 
 var getItems = { 
     getItemList: function () {
-    var preke = null;
-    for ( i=1; i<items.length + 1; i++) {
-        preke = "Item"+i;
-        var item = JSON.parse(localStorage.getItem(preke));
+    var item = null;
+    for ( i=0; i<items.length; i++) {
+        var itemsInStock = JSON.parse(localStorage.getItem(items));
+        var item = itemsInStock[i];
         itemArray.push(item);
     }
     return itemArray;

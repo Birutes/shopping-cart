@@ -26,7 +26,6 @@ localStorage.setItem('Item4', JSON.stringify({
     foto: 'img/ramune.jpg'
 })); */
 
-localStorage.setItem('items', JSON.stringify(items));
 
 var items = [   {'Item1' : 
                 { preke : 'Hiacintas',
@@ -51,10 +50,13 @@ var items = [   {'Item1' :
                 foto: 'img/ramune.jpg'}}
             ];
 
-/* var newItem = {'Item6' :
+localStorage.setItem('items', JSON.stringify(items));
+
+
+var newItem = {'Item6' :
     { preke: 'Ramunių puokštė',
     aprasymas: 'Lauko gėlės – tai žvalumo, gyvybingumo simbolis. ',
     kaina: '24.62',
     foto: 'img/ramune.jpg'}}
 
- items.push(newItem); */ 
+ items.push(newItem);  
