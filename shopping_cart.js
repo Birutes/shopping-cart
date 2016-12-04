@@ -23,39 +23,36 @@ $(document).ready( function () {
   
 });
 
-var itemArray = [];
+var itemsInStock = [];
 var cart = [];
 var price = null;
 var countAllItems = null;
 
 var getItems = { 
     getItemList: function () {
-    var item = null;
-    for ( i=0; i<items.length; i++) {
         var itemsInStock = JSON.parse(localStorage.getItem(items));
-        var item = itemsInStock[i];
-        itemArray.push(item);
-    }
-    return itemArray;
-} };
+        return itemsInStock;
+    } 
+}
 
 function printItemList () {
     
     var itemsList = $('#items-box');
-    
-    $.each(itemArray, function (index, val) {
+
+    for (var i = 0; i < itemsInStock.length; i++ ) {
         $(itemsList).append('<div>');
         
-        var itemBox = $(itemsList).find('div:last');
+        var itemBox = $(itemsList).find('div:last');itemsInStock
         
         $(itemBox).addClass('item-box big').append('<img>');
-        $(itemBox).find('img').attr('src', this.foto).addClass('img-responsive');
+        $(itemBox).find('img').attr('src', itemsInStock[i].foto).addClass('img-responsive');
         $(itemBox).append('<ul>');
-        $(itemBox).find('ul').append('<li>' + this.preke + '</li>');
-        $(itemBox).find('ul').append('<li>' + this.kaina + '</li>');
-        $(itemBox).append("<button rel='" + this.preke + "' type='button' class='btn btn-default show add-to-cart' aria-label='Left Align'><p>Pirkti</p></button>");
+        $(itemBox).find('ul').append('<li>' + itemsInStock[i].aprasymas + '</li>');
+        $(itemBox).find('ul').append('<li>' + itemsInStock[i].preke + '</li>');
+        $(itemBox).append("<button rel='" + itemsInStock[i][0] + "' type='button' class='btn btn-default show add-to-cart' aria-label='Left Align'><p>Pirkti</p></button>");
         
-    })
+    }
+
 }
 
 function updateCart () {
@@ -64,11 +61,11 @@ function updateCart () {
     var price = 0;
     
     
-    $.each( itemArray, function (index, val) {
-        if (this.preke === $item) {
+    for (var i = 0; i < itemsInStock.length; i++ ) {
+        if (itemsInStock[i].preke === $item) {
             cart.push(this);
         } 
-    })
+    }
     
     $.each(cart, function (index, val) {
         price += Number(cart[index].kaina);
@@ -85,11 +82,11 @@ function cartList () {
         
     $modalBody.text('');
     
-    $.each( itemArray, function (index, val) {
+    for (var i = 0; i < itemsInStock.length; i++ ) {
             
-        var itemInArray = itemArray[index].preke;
-        var itemPrice = itemArray[index].kaina;
-        var itemData = itemArray[index].aprasymas;
+        var itemInArray = itemsInStock[i].preke;
+        var itemPrice = itemsInStock[i].kaina;
+        var itemData = itemsInStock[i].aprasymas;
         var count = 0;
         
         $.each( cart, function (index, val) {
@@ -105,9 +102,9 @@ function cartList () {
                             + "<p> Vieneto kaina: " + itemPrice + ". Prekės aprašymas: " + itemData + "</p>" 
                             + "<p><span rel='" + itemInArray + "' class='x'>Pašalinti iš krepšelio</span></p></div>"); 
         }
-    });
+    };
     
-    $('.x').on('click', deleteItemFromCart);
+    /*$('.x').on('click', deleteItemFromCart);*/
 }
 
 function remove () {
@@ -119,13 +116,13 @@ function remove () {
                               + "<button type='button' class='btn btn-danger remove-button'>Pašalinti</button>"
                               + "<button type='button' class='btn btn-warning warning'>Atšaukti</button></div>"); 
         
-        $('.remove-button').on('click', deleteItemFromCart);
+        /*$('.remove-button').on('click', deleteItemFromCart);*/
         $('.warning').on('click', function(){
             $('#modal').modal('hide');
         });
 }
 
-function deleteItemFromCart () {
+/* function deleteItemFromCart () {
     
     var value = $(this).attr('rel')
 
@@ -168,4 +165,4 @@ function deleteItemFromCart () {
 
     updateCart();
     cartList();
-}
+} */
