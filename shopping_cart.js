@@ -1,6 +1,5 @@
 $(document).ready( function () {
     
-    getItems.getItemList();     
     printItemList();  
     cartList();
     
@@ -28,13 +27,12 @@ var cart = [];
 var price = null;
 var countAllItems = null;
 
-var getItems = { 
-    getItemList: function () {
-        var itemsInStock = JSON.parse(localStorage.getItem(items));
-        return itemsInStock;
-    } 
-}
 
+var itemsInStock = JSON.parse(localStorage.getItem('items'));
+
+for (var i = 0; i < itemsInStock.length; i++ ) {
+    console.log(itemsInStock[i].kaina);  
+}
 function printItemList () {
     
     var itemsList = $('#items-box');
@@ -42,15 +40,15 @@ function printItemList () {
     for (var i = 0; i < itemsInStock.length; i++ ) {
         $(itemsList).append('<div>');
         
-        var itemBox = $(itemsList).find('div:last');itemsInStock
+        var itemBox = $(itemsList).find('div:last');
         
         $(itemBox).addClass('item-box big').append('<img>');
         $(itemBox).find('img').attr('src', itemsInStock[i].foto).addClass('img-responsive');
         $(itemBox).append('<ul>');
         $(itemBox).find('ul').append('<li>' + itemsInStock[i].aprasymas + '</li>');
         $(itemBox).find('ul').append('<li>' + itemsInStock[i].preke + '</li>');
-        $(itemBox).append("<button rel='" + itemsInStock[i][0] + "' type='button' class='btn btn-default show add-to-cart' aria-label='Left Align'><p>Pirkti</p></button>");
-        
+        $(itemBox).append("<button rel='" + itemsInStock[i].kaina + "' type='button' class='btn btn-default show add-to-cart' aria-label='Left Align'><p>Pirkti</p></button>");
+
     }
 
 }
