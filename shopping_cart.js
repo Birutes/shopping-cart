@@ -29,9 +29,9 @@ var countAllItems = null;
 
 
 var itemsInStock = JSON.parse(localStorage.getItem('items'));
-
+console.log(itemsInStock);
 for (var i = 0; i < itemsInStock.length; i++ ) {
-    console.log(itemsInStock[i].kaina);  
+    console.log(itemsInStock[i].Item1.kaina);  
 }
 function printItemList () {
     
@@ -43,11 +43,11 @@ function printItemList () {
         var itemBox = $(itemsList).find('div:last');
         
         $(itemBox).addClass('item-box big').append('<img>');
-        $(itemBox).find('img').attr('src', itemsInStock[i].foto).addClass('img-responsive');
+        $(itemBox).find('img').attr('src', itemsInStock[i].['Item' + i + 1].foto).addClass('img-responsive');
         $(itemBox).append('<ul>');
-        $(itemBox).find('ul').append('<li>' + itemsInStock[i].aprasymas + '</li>');
-        $(itemBox).find('ul').append('<li>' + itemsInStock[i].preke + '</li>');
-        $(itemBox).append("<button rel='" + itemsInStock[i].kaina + "' type='button' class='btn btn-default show add-to-cart' aria-label='Left Align'><p>Pirkti</p></button>");
+        $(itemBox).find('ul').append('<li>' + itemsInStock[i].['Item' + i + 1].aprasymas + '</li>');
+        $(itemBox).find('ul').append('<li>' + itemsInStock[i].['Item' + i + 1].preke + '</li>');
+        $(itemBox).append("<button rel='" + itemsInStock[i].['Item' + i + 1].kaina + "' type='button' class='btn btn-default show add-to-cart' aria-label='Left Align'><p>Pirkti</p></button>");
 
     }
 
