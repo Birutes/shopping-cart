@@ -27,23 +27,23 @@ localStorage.setItem('Item4', JSON.stringify({
 })); */
 
 
-var items = [   {'Item1' : 
+var items = [   {'Item0' : 
                 { preke : 'Hiacintas',
                 aprasymas: 'Hiacintai – tai tikras pavasario simbolis!',
                 kaina: '1.88',
                 foto: 'img/hiacintas.jpg'}
             },
-            {'Item2' :
+            {'Item1' :
                 { preke: 'Kardelis',
                 aprasymas: 'Ivairių spalvų gėlės.',
                 kaina: '0.49',
                 foto: 'img/kardelis.jpg'}},
-            {'Item3' :
+            {'Item2' :
                 { preke: 'Orchidėja',
                 aprasymas: 'Orchidėja su 1  svyrančiu žiedynu pasodinta 12 cm permatomame vazonėlyje.',
                 kaina: '14.99',
                 foto: 'img/orchideja.jpg'}},
-            {'Item4' :
+            {'Item3' :
                 { preke: 'Ramunių puokštė',
                 aprasymas: 'Lauko gėlės – tai žvalumo, gyvybingumo simbolis. ',
                 kaina: '24.62',
@@ -53,7 +53,7 @@ var items = [   {'Item1' :
 localStorage.setItem('items', JSON.stringify(items));
 
 
-var newItem = {'Item6' :
+var newItem = {'Item4' :
     { preke: 'Ramunių puokštė',
     aprasymas: 'Lauko gėlės – tai žvalumo, gyvybingumo simbolis. ',
     kaina: '24.62',

@@ -30,9 +30,6 @@ var countAllItems = null;
 
 var itemsInStock = JSON.parse(localStorage.getItem('items'));
 console.log(itemsInStock);
-for (var i = 0; i < itemsInStock.length; i++ ) {
-    console.log(itemsInStock[i].Item1.kaina);  
-}
 function printItemList () {
     
     var itemsList = $('#items-box');
@@ -43,11 +40,11 @@ function printItemList () {
         var itemBox = $(itemsList).find('div:last');
         
         $(itemBox).addClass('item-box big').append('<img>');
-        $(itemBox).find('img').attr('src', itemsInStock[i].['Item' + i + 1].foto).addClass('img-responsive');
+        $(itemBox).find('img').attr('src', itemsInStock[i]['Item' + i].foto).addClass('img-responsive');
         $(itemBox).append('<ul>');
-        $(itemBox).find('ul').append('<li>' + itemsInStock[i].['Item' + i + 1].aprasymas + '</li>');
-        $(itemBox).find('ul').append('<li>' + itemsInStock[i].['Item' + i + 1].preke + '</li>');
-        $(itemBox).append("<button rel='" + itemsInStock[i].['Item' + i + 1].kaina + "' type='button' class='btn btn-default show add-to-cart' aria-label='Left Align'><p>Pirkti</p></button>");
+        $(itemBox).find('ul').append('<li>' + itemsInStock[i]['Item' + i].preke + '</li>');
+        $(itemBox).find('ul').append('<li>' + itemsInStock[i]['Item' + i].kaina + '</li>');
+        $(itemBox).append("<button rel='" + itemsInStock[i]['Item' + i].preke + "' type='button' class='btn btn-default show add-to-cart' aria-label='Left Align'><p>Pirkti</p></button>");
 
     }
 
@@ -60,15 +57,16 @@ function updateCart () {
     
     
     for (var i = 0; i < itemsInStock.length; i++ ) {
-        if (itemsInStock[i].preke === $item) {
+        if (itemsInStock[i]['Item' + i].preke === $item) {
             cart.push(this);
         } 
-    }
     
-    $.each(cart, function (index, val) {
-        price += Number(cart[index].kaina);
-    });
-       
+    
+        $.each(cart, function (index, val) {
+        price += Number(cart[index]['Item' + i].kaina);
+        });
+    } 
+
     countAllItems = cart.length;
         
     $('#total-price').html('<p class="basket">Gėlių krepšelyje: ' + countAllItems + ' Iš viso: ' + price.toFixed(2) + ' Eu</p>' );  
@@ -82,9 +80,9 @@ function cartList () {
     
     for (var i = 0; i < itemsInStock.length; i++ ) {
             
-        var itemInArray = itemsInStock[i].preke;
-        var itemPrice = itemsInStock[i].kaina;
-        var itemData = itemsInStock[i].aprasymas;
+        var itemInArray = itemsInStock[i]['Item' + i].preke;
+        var itemPrice = itemsInStock[i]['Item' + i].kaina;
+        var itemData = itemsInStock[i]['Item' + i].aprasymas;
         var count = 0;
         
         $.each( cart, function (index, val) {
