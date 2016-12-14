@@ -57,15 +57,17 @@ function updateCart () {
     
     
     for (var i = 0; i < itemsInStock.length; i++ ) {
-        if (itemsInStock[i]['Item' + i].preke === $item) {
-            cart.push(this);
+        var item = itemsInStock[i]['Item' + i].preke;
+        var itemsArray = itemsInStock[i]['Item' + i];
+    
+        if (item === $item) {
+            cart.push(itemsArray);
         } 
-    
-    
-        $.each(cart, function (index, val) {
-        price += Number(cart[index]['Item' + i].kaina);
-        });
-    } 
+    }
+
+    $.each(cart, function (index, val) {
+        price += Number(cart[index].kaina);
+    }); 
 
     countAllItems = cart.length;
         
@@ -83,7 +85,7 @@ function cartList () {
         var itemInArray = itemsInStock[i]['Item' + i].preke;
         var itemPrice = itemsInStock[i]['Item' + i].kaina;
         var itemData = itemsInStock[i]['Item' + i].aprasymas;
-        var count = 0;
+        count = 0;
         
         $.each( cart, function (index, val) {
             if ( cart[index].preke === itemInArray) {
@@ -100,7 +102,7 @@ function cartList () {
         }
     };
     
-    /*$('.x').on('click', deleteItemFromCart);*/
+    $('.x').on('click', deleteItemFromCart);
 }
 
 function remove () {
@@ -118,32 +120,14 @@ function remove () {
         });
 }
 
-/* function deleteItemFromCart () {
+function deleteItemFromCart () {
     
-    var value = $(this).attr('rel')
+    var value = $(this).attr('rel');
 
-       $('span.count').each(function (index, value) {
-            switch (index) {
-                case 0:
-                    itemCount = $('span.count').text().charAt(0);
-                case 1:
-                    Itemcount = $('span.count').text().charAt(1);
-                    break;
-                case 2:
-                    Itemcount = $('span.count').text().charAt(2);
-                    break;
-                case 3:
-                    Itemcount = $('span.count').text().charAt(3);
-                    break;
-                case 4:
-                    Itemcount = $('span.count').text().charAt(4);
-                    break;
-            }
-             });
-            if ( itemCount > 1 ) {
+       
+            if ( count ) {
                  
-                $(document).ready(function() {
-                console.log( itemCount); });
+                console.log(count);
             }
         
             else {
@@ -154,6 +138,7 @@ function remove () {
                 });
          };
         
+        console.log(count);
 
 
     
@@ -161,4 +146,4 @@ function remove () {
 
     updateCart();
     cartList();
-} */
+} 
