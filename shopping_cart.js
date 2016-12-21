@@ -75,7 +75,8 @@ function updateCart () {
 }
 
 function cartList () {
-       
+      
+    var count = 0; 
     var $modalBody = $('.modal-content');
         
     $modalBody.text('');
@@ -85,13 +86,13 @@ function cartList () {
         var itemInArray = itemsInStock[i]['Item' + i].preke;
         var itemPrice = itemsInStock[i]['Item' + i].kaina;
         var itemData = itemsInStock[i]['Item' + i].aprasymas;
-        count = 0;
         
-        $.each( cart, function (index, val) {
-            if ( cart[index].preke === itemInArray) {
+        
+        for (var i = 0; i < cart.length; i++ ) {
+            if ( cart[i].preke === itemInArray) {
                 count += 1;
             } 
-        });
+        };
         
        
         if ( count > 0 ) {
